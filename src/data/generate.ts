@@ -16,7 +16,7 @@ function generateAuthors(n: number) {
       firstName: chance.first(),
       lastName: chance.last(),
       dateOfBirth: chance.birthday(),
-      bio: chance.name(),
+      bio: chance.sentence({ words: 50 }),
     };
 
     return author;
@@ -66,7 +66,11 @@ async function generateBooks(n: number) {
   await Book.insertMany(books);
 }
 
-connect(env.database.url)
+connect(env.database.url, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+  useCreateIndex: true,
+})
   .then(() => {
     console.log("DB connected");
     return generateBooks(N_BOOKS);

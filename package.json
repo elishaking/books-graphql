@@ -9,7 +9,8 @@
   "scripts": {
     "start": "node .",
     "start:dev": "nodemon src/app.ts",
-    "build": "rm -rf dist && tsc -p ."
+    "build": "rm -rf dist && tsc -p .",
+    "data": "ts-node src/data/generate.ts"
   },
   "dependencies": {
     "chance": "^1.1.6",
