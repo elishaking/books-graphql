@@ -1,9 +1,12 @@
 import { Schema, Document, Types, model } from "mongoose";
+import { IAuthor } from "./author";
+import { IReview } from "./review";
 
-interface IBook {
+export interface IBook {
   title: string;
   description: string;
-  author: string;
+  author: IAuthor;
+  reviews: IReview[];
 }
 
 interface IBookDoc extends IBook, Document {}
@@ -22,6 +25,14 @@ const BookSchema = new Schema<IBook>(
     author: {
       type: Types.ObjectId,
       ref: "Author",
+    },
+    reviews: {
+      type: [
+        {
+          type: Types.ObjectId,
+          ref: "Review",
+        },
+      ],
     },
   },
   { timestamps: true }

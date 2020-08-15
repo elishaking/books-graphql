@@ -1,6 +1,7 @@
-import { Schema, Document, model } from "mongoose";
+import { Schema, Types, Document, model } from "mongoose";
 
-interface IAuthor {
+export interface IAuthor {
+  _id: any;
   firstName: string;
   lastName: string;
   dateOfBirth: Date;
@@ -11,6 +12,10 @@ interface IAuthorDoc extends IAuthor, Document {}
 
 const AuthorSchema = new Schema<IAuthor>(
   {
+    _id: {
+      type: Types.ObjectId,
+      required: true,
+    },
     firstName: {
       type: String,
       required: true,

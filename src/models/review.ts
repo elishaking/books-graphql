@@ -1,6 +1,7 @@
-import { Schema, Document, model } from "mongoose";
+import { Schema, Types, Document, model } from "mongoose";
 
-interface IReview {
+export interface IReview {
+  _id: any;
   reviewerName: string;
   title: string;
   message: string;
@@ -11,6 +12,10 @@ interface IReviewDoc extends IReview, Document {}
 
 const ReviewSchema = new Schema<IReview>(
   {
+    _id: {
+      type: Types.ObjectId,
+      required: true,
+    },
     reviewerName: {
       type: String,
       required: true,
