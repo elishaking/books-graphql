@@ -1,7 +1,8 @@
 import { Chance } from "chance";
-import { Types } from "mongoose";
+import { Types, connect, disconnect } from "mongoose";
 
 import { IAuthor, IBook, IReview, Author, Review, Book } from "../models";
+import { env } from "../config";
 
 const chance = new Chance();
 const N_AUTHORS = 700;
@@ -65,6 +66,16 @@ async function generateBooks(n: number) {
   await Book.insertMany(books);
 }
 
-generateBooks(N_BOOKS).then(() => {
-  console.log("Books generated");
-});
+connect(env.database.url)
+  .then(() => {
+    console.log("DB connected");
+    return generateBooks(N_BOOKS);
+  })
+  .then(() => {
+    console.log("Books generated");
+    return disconnect();
+  })
+  .then(() => {
+    console.log("DB disconnected");
+  })
+  .catch((err) => console.error(err));
