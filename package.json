@@ -1,0 +1,27 @@
+{
+  "name": "books-graphql",
+  "version": "0.0.1",
+  "description": "Books | GraphQL",
+  "main": "dist/app.js",
+  "repository": "git@github.com:elishaking/books-graphql.git",
+  "author": "King Elisha <ek.chibueze@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "start": "node .",
+    "start:dev": "nodemon src/app.ts",
+    "build": "rm -rf dist && tsc -p ."
+  },
+  "dependencies": {
+    "chance": "^1.1.6",
+    "express": "^4.17.1",
+    "express-graphql": "^0.11.0",
+    "graphql": "^15.3.0"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.7",
+    "@types/node": "^14.0.27",
+    "nodemon": "^2.0.4",
+    "ts-node": "^8.10.2",
+    "typescript": "^3.9.7"
+  }
+}
