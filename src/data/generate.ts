@@ -50,8 +50,11 @@ async function generateBooks(n: number) {
       min: reviewStartIdx,
     });
     books.push({
-      title: chance.name(),
+      title: `${chance.name()} ${chance.name({ full: false })}`,
       description: chance.sentence({
+        words: chance.integer({ min: 100, max: 300 }),
+      }),
+      shortDescription: chance.sentence({
         words: chance.integer({ min: 20, max: 30 }),
       }),
       author: authors[chance.integer({ max: N_AUTHORS - 1, min: 0 })]._id,

@@ -30,7 +30,9 @@ const ReviewType = new GraphQLObjectType({
 const BookType = new GraphQLObjectType({
   name: "BookType",
   fields: () => ({
+    _id: { type: GraphQLString },
     title: { type: GraphQLString },
+    shortDescription: { type: GraphQLString },
     description: { type: GraphQLString },
     author: { type: AuthorType },
     reviews: { type: GraphQLList(ReviewType) },

@@ -5,6 +5,7 @@ import { IReview } from "./review";
 export interface IBook {
   title: string;
   description: string;
+  shortDescription: string;
   author: IAuthor;
   reviews: IReview[];
 }
@@ -19,6 +20,10 @@ const BookSchema = new Schema<IBook>(
       unique: true,
     },
     description: {
+      type: String,
+      required: true,
+    },
+    shortDescription: {
       type: String,
       required: true,
     },
