@@ -49,7 +49,18 @@ const RootQuery = new GraphQLObjectType({
       },
       resolve(_, args) {
         return Book.find()
-          .limit(args.first)
+          .limit(args.first || 10)
+          .populate("author")
+          .populate("reviews");
+      },
+    },
+    book: {
+      type: BookType,
+      args: {
+        id: { type: GraphQLString },
+      },
+      resolve(_, args) {
+        return Book.findOne({ _id: args.id })
           .populate("author")
           .populate("reviews");
       },
