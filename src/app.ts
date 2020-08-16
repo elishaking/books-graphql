@@ -1,9 +1,20 @@
 import express from "express";
+import { connect } from "mongoose";
 import { graphqlHTTP } from "express-graphql";
 
 import { schema } from "./graphql/schema";
+import { env } from "./config";
 
 const app = express();
+
+connect(env.database.url, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+  useCreateIndex: true,
+}).then(() => {
+  console.log("DB connected");
+});
+
 app.use(
   "/graphql",
   graphqlHTTP({
